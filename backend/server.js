@@ -3,13 +3,22 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import healthRouter from './src/routes/health.js';
+import { connectDB } from './src/config/db.js';
 
+//Connect Database
+connectDB();
 
 //Express Server
 const app = express();
 
 //Add Server Middlwares
-
+app.use(helmet());
+app.use(cors(
+    {
+        credentials:true,
+        origin:process.env.CLIENT_URL
+    }
+))
 
 //Server Routes
 app.use('/health',healthRouter);
