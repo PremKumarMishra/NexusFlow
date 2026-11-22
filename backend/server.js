@@ -3,6 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import healthRouter from './src/routes/health.js';
+import profileRouter from './src/routes/profile.js'
 import { connectDB } from './src/config/db.js';
 
 //Connect Database
@@ -22,6 +23,7 @@ app.use(cors(
 
 //Server Routes
 app.use('/health',healthRouter);
+app.use('/profile',profileRouter);
 
 app.listen(process.env.PORT, ()=> {
     console.log(`Server is running on PORT ${process.env.PORT}`);
